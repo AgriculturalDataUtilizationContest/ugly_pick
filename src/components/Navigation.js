@@ -1,15 +1,21 @@
-import { Box, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import { Box, Grid, Input, styled, Typography } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Horizontal } from "../style/CommunalStyle";
 import HomeBtn from "../assets/HomeBtn.svg";
 import Search from "../assets/search.svg";
-import styled from "styled-components";
 
 export default function Navigation() {
   const location = useLocation();
   const navigate = useNavigate();
   const searchRef = useRef(null);
+
+  const [searchValue, setSeachValue] = useState("");
+  const handleEnterPress = (e) => {
+    if (e.key === "Enter") {
+      //console.log(searchValue);
+      // search 하기
+    }
+  };
 
   useEffect(() => {
     if (!searchRef.current) return;
@@ -33,7 +39,13 @@ export default function Navigation() {
       <Grid container spacing="60px" sx={{ alignItems: "center" }}>
         <SearchContainer ref={searchRef}>
           <Box component="img" src={Search} />
-          <SearchInput />
+          <SearchInput
+            value={searchValue}
+            onChange={(e) => setSeachValue(e.target.value)}
+            onKeyDown={(e) => handleEnterPress(e)}
+            placeholder="search"
+            disableUnderline
+          />
         </SearchContainer>
         <NavBtn variant="caption">Home</NavBtn>
         <NavBtn variant="caption">Forcast</NavBtn>
@@ -65,7 +77,7 @@ const SearchContainer = styled(Box)`
   }
 `;
 
-const SearchInput = styled.input`
+const SearchInput = styled(Input)`
   width: 26vw;
   min-width: 200px;
   height: 48px;
