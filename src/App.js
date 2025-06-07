@@ -1,15 +1,11 @@
 import React from "react";
-import { router } from "./Router";
-import { RouterProvider } from "react-router-dom";
-import { CssBaseline } from "@mui/material";
-import GlobalStyle from "./style/globalStyle";
+import Router from "./Router";
+import ThemeProvider from "./theme/ThemeProvider";
 function App() {
   return (
-    <>
-      <GlobalStyle />
-      <CssBaseline />
-      <RouterProvider router={router} />
-    </>
+    <ThemeProvider>
+      <Router />
+    </ThemeProvider>
   );
 }
 

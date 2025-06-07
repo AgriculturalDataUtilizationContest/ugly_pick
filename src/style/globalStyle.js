@@ -28,6 +28,7 @@ export default function GlobalStyle() {
           height: "100%",
         },
         input: {
+          outline: "none",
           "&[type=number]": {
             MozAppearance: "textfield",
             "&::-webkit-outer-spin-button": {
