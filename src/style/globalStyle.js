@@ -8,7 +8,7 @@ export default function GlobalStyle() {
       styles={{
         "*": {
           boxSizing: "border-box",
-          fontFamily: "Pretendard-Regular",
+          fontFamily: "Pretendard Variable",
         },
         html: {
           margin: 0,

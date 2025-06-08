@@ -36,7 +36,14 @@ export default function Navigation() {
           onClick={() => navigate("/")}
         />
       </Grid>
-      <Grid container spacing="60px" sx={{ alignItems: "center" }}>
+      <Grid
+        size={{ md: 7 }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
+      >
         <SearchContainer ref={searchRef}>
           <Box component="img" src={Search} />
           <SearchInput

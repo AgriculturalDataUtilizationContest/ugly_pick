@@ -1,4 +1,4 @@
-const FONT_PRIMARY = '"Raleway", sans-serif';
+const FONT_PRIMARY = "Pretendard Variable";
 
 export function remToPx(value) {
   return Math.round(parseFloat(value) * 16);
