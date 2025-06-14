@@ -12,7 +12,7 @@ export default function Navigation() {
   const [searchValue, setSeachValue] = useState("");
   const handleEnterPress = (e) => {
     if (e.key === "Enter") {
-      //console.log(searchValue);
+      console.log(searchValue);
       // search 하기
     }
   };
@@ -49,7 +49,7 @@ export default function Navigation() {
           <SearchInput
             value={searchValue}
             onChange={(e) => setSeachValue(e.target.value)}
-            onKeyDown={(e) => handleEnterPress(e)}
+            onKeyDown={handleEnterPress}
             placeholder="search"
             disableUnderline
           />

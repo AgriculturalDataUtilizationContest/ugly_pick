@@ -2,8 +2,8 @@ const palette = {
   primary: {
     main: "#27B06E",
     black: "black",
-    white: "white",
-    gray: "#f1f1f1",
+    white: "#ffffff",
+    gray1: "#f4f4f4",
     red: "#f44336",
     blue: "#2196F3",
     gray2: "#9e9e9e",
