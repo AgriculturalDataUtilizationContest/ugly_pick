@@ -6,6 +6,12 @@ export function isNumeric(value) {
   return value !== "" && !isNaN(value);
 }
 
+export function formatSignedNumber(num) {
+  const sign = num >= 0 ? "+" : "-";
+  const absValue = Math.abs(num).toFixed(1); // 소수점 1자리 고정
+  return `${sign}${absValue}`;
+}
+
 export function KoreanDate() {
   const date = new Date();
 

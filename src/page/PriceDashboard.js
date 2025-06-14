@@ -46,6 +46,7 @@ const Container = styled(Grid)`
   display: flex;
   flex-direction: row;
   padding: 25px 45px;
+
   .MuiTabs-indicator {
     height: 4px;
     bottom: 4px;

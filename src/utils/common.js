@@ -20,3 +20,43 @@ export const recommandInfo = {
   title: "나에게 맞는 똑똑한 소비 제안!",
   subtitle: "소비 패턴과 트렌드를 분석해 \n가성비 높은 농산물을 추천해드려요.",
 };
+
+//Dumy Data
+export const recommandList = [
+  {
+    name: "옥수수(corn)",
+    category: "category1",
+    price: 2500,
+    rate: 5.1,
+  },
+  {
+    name: "복숭아(peach)",
+    category: "category1",
+    price: 4000,
+    rate: 5.1,
+  },
+  {
+    name: "사과(apple)",
+    category: "category1",
+    price: 1200,
+    rate: -2.0,
+  },
+  {
+    name: "옥수수(corn)",
+    category: "category1",
+    price: 2500,
+    rate: -9.2,
+  },
+  {
+    name: "복숭아(peach)",
+    category: "category1",
+    price: 4000,
+    rate: 5.1,
+  },
+  {
+    name: "사과(apple)",
+    category: "category1",
+    price: 1200,
+    rate: -2.0,
+  },
+];

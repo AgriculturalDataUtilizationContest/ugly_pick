@@ -60,7 +60,7 @@ export default function DigitContainer(props) {
           >
             <Typography
               variant="sub"
-              sx={{ ml: "5px", fontSize: "11px", fontWeight: "600" }}
+              sx={{ fontSize: "11px", fontWeight: "600" }}
             >
               1kg/원(won)
             </Typography>

@@ -4,8 +4,9 @@ import { Box, Grid, styled, Typography } from "@mui/material";
 import UglyPostImg from "../../../assets/UglyPost.svg";
 import { formatToKRW, KoreanDate } from "../../../utils/utils";
 import { pxToRem } from "../../../theme/typography";
-import { compareInfo } from "../../../utils/common";
+import { compareInfo, recommandList } from "../../../utils/common";
 import DigitContainer from "./DigitContainer";
+import Recommand from "./Recommand";
 
 export default function PriceCompare() {
   const todayDate = KoreanDate();
@@ -45,7 +46,14 @@ export default function PriceCompare() {
           </Typography>
           <Typography variant="caption">{compareInfo.subtitle}</Typography>
         </Horizontal>
-        <Grid container spacing={2}>
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            borderBottom: "1px solid rgba(213, 213, 213, 0.39)",
+            pb: "30px",
+          }}
+        >
           <Grid size={{ md: 5 }}>
             <UglyPick>
               <UglyPost component="img" src={UglyPostImg} id="ugly-post" />
@@ -149,6 +157,19 @@ export default function PriceCompare() {
             />
           </Grid>
         </Grid>
+        <RecommandContainer>
+          <Typography variant="subtitle" sx={{ mb: "3px" }}>
+            다음에는 이런 품목이 변동돼요!
+          </Typography>
+          <Typography variant="sub" sx={{ mb: "7px" }}>
+            지금 사면 이득! 가격 변동 전 미리 준비하세요!
+          </Typography>
+          <Horizontal sx={{ overflowX: "auto", mt: "20px" }}>
+            {recommandList.map((item, index) => (
+              <Recommand key={index} info={item} />
+            ))}
+          </Horizontal>
+        </RecommandContainer>
       </Vertical>
     )
   );
@@ -201,4 +222,8 @@ const CountWrapper = styled(Box)`
       font-size: ${pxToRem(12)};
     }
   }
+`;
+
+const RecommandContainer = styled(Vertical)`
+  margin-top: 30px;
 `;
