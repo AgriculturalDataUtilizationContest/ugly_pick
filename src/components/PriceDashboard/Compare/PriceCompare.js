@@ -56,7 +56,12 @@ export default function PriceCompare() {
         >
           <Grid size={{ md: 5 }}>
             <UglyPick>
-              <UglyPost component="img" src={UglyPostImg} id="ugly-post" />
+              <UglyPost
+                component="object"
+                data={UglyPostImg}
+                type="image/svg+xml"
+                id="ugly-post"
+              />
               <Typography variant="subtitle" sx={{ mb: "3px" }}>
                 못난이 상품을 지금 사면 이만큼이나 절약할 수 있어요
               </Typography>
