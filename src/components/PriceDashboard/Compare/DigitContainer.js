@@ -1,6 +1,6 @@
 import { Box, styled, Typography, useTheme } from "@mui/material";
 import React from "react";
-import { Horizontal, Vertical } from "../../style/CommunalStyle";
+import { Horizontal, Vertical } from "../../../style/CommunalStyle";
 import Digit from "./Digit";
 
 export default function DigitContainer(props) {

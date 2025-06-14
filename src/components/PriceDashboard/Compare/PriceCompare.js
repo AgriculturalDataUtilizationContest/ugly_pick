@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Vertical, Horizontal } from "../../style/CommunalStyle";
+import { Vertical, Horizontal } from "../../../style/CommunalStyle";
 import { Box, Grid, styled, Typography } from "@mui/material";
-import UglyPostImg from "../../assets/UglyPost.svg";
-import { formatToKRW, KoreanDate } from "../../utils/utils";
-import { pxToRem } from "../../theme/typography";
-import { compareInfo } from "../../utils/common";
+import UglyPostImg from "../../../assets/UglyPost.svg";
+import { formatToKRW, KoreanDate } from "../../../utils/utils";
+import { pxToRem } from "../../../theme/typography";
+import { compareInfo } from "../../../utils/common";
 import DigitContainer from "./DigitContainer";
 
 export default function PriceCompare() {

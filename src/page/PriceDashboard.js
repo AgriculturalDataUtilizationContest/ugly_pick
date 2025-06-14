@@ -1,6 +1,6 @@
 import { Box, Grid, styled, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
-import PriceCompare from "../components/PriceDashboard/PriceCompare";
+import PriceCompare from "../components/PriceDashboard/Compare/PriceCompare";
 
 function TabContents(props) {
   const { children, value, index } = props;
