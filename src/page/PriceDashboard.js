@@ -2,6 +2,7 @@ import { Box, Grid, styled, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import PriceCompare from "../components/PriceDashboard/Compare/PriceCompare";
 import { pxToRem } from "../theme/typography";
+import PricePredict from "../components/PriceDashboard/Predict/PricePredict";
 
 function TabContents(props) {
   const { children, value, index } = props;
@@ -32,7 +33,7 @@ export default function PriceDashboard() {
           <PriceCompare />
         </TabContents>
         <TabContents value={tabListValue} index={1}>
-          Item Two
+          <PricePredict />
         </TabContents>
         <TabContents value={tabListValue} index={2}>
           Item Three
