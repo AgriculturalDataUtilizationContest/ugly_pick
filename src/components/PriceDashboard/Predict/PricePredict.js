@@ -3,6 +3,7 @@ import { Horizontal, Vertical } from "../../../style/CommunalStyle";
 import { Box, Typography } from "@mui/material";
 import { predictInfo } from "../../../utils/common";
 import PriceChart from "./PriceChart";
+import Itemlist from "./Itemlist";
 
 export default function PricePredict() {
   return (
@@ -28,6 +29,7 @@ export default function PricePredict() {
         </Typography>
       </Horizontal>
       <PriceChart />
+      <Itemlist />
     </Vertical>
   );
 }
