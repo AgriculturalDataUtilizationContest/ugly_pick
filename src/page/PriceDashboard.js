@@ -2,6 +2,8 @@ import { Box, Grid, styled, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import PriceCompare from "../components/PriceDashboard/Compare/PriceCompare";
 import { pxToRem } from "../theme/typography";
+import PricePredict from "../components/PriceDashboard/Predict/PricePredict";
+import Recommand from "../components/PriceDashboard/Recommand/Recommand";
 
 function TabContents(props) {
   const { children, value, index } = props;
@@ -21,7 +23,7 @@ export default function PriceDashboard() {
       <Grid size={{ md: 3 }} sx={{ border: "1px solid black" }}>
         이건 왼쪽
       </Grid>
-      <Grid size={{ md: 9 }}>
+      <Grid size={{ md: 9 }} sx={{ minHeight: "calc(100vh - 100px)" }}>
         <Tabs value={tabListValue} onChange={handleChange}>
           <CustomTab label="가격 비교" value={0} />
           <CustomTab label="가격 예측" value={1} />
@@ -32,10 +34,13 @@ export default function PriceDashboard() {
           <PriceCompare />
         </TabContents>
         <TabContents value={tabListValue} index={1}>
-          Item Two
+          <PricePredict />
         </TabContents>
         <TabContents value={tabListValue} index={2}>
           Item Three
+        </TabContents>
+        <TabContents value={tabListValue} index={3}>
+          <Recommand />
         </TabContents>
       </Grid>
     </Container>
@@ -46,7 +51,6 @@ const Container = styled(Grid)`
   display: flex;
   flex-direction: row;
   padding: 25px 45px;
-
   .MuiTabs-indicator {
     height: 4px;
     bottom: 4px;

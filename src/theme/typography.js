@@ -5,7 +5,7 @@ export function remToPx(value) {
 }
 
 export function pxToRem(value) {
-  return `${value / 18}rem`;
+  return `${value / 19}rem`;
 }
 
 export function responsiveFontSizes({ sm, md, lg }) {
