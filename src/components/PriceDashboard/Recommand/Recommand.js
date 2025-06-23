@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Horizontal, Vertical } from "../../../style/CommunalStyle";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, styled, Typography } from "@mui/material";
 import { recommandInfo } from "../../../utils/common";
 import Grade from "../../../assets/Grade.svg";
 import NonGrade from "../../../assets/NonGrade.svg";
@@ -62,7 +62,7 @@ export default function Recommand() {
   }, []);
   return (
     <Vertical sx={{ position: "relative" }}>
-      <Horizontal sx={{ mb: "43px" }}>
+      <Horizontal sx={{ mb: "80px" }}>
         <Typography variant="title" sx={{ marginRight: "30px" }}>
           {recommandInfo.title}
         </Typography>
@@ -106,21 +106,28 @@ const Item = (props) => {
   return (
     <Vertical
       sx={{
-        border: "1px solid black",
         width: "340px",
         flexShrink: "0",
         mr: "35px",
+        boxShadow: "0px 4px 40.9px 0px rgba(0, 0, 0, 0.05)",
+        borderRadius: "12px",
       }}
     >
       <Box
         component="img"
         src={marketImage === null ? NonImg : marketImage}
-        sx={{ height: "280px" }}
+        sx={{ height: "280px", borderRadius: "12px 12px 0 0" }}
       />
-      <Typography variant="title">{marketName}</Typography>
-      <StarRating rating={marketReview} />
-      <Typography variant="caption">{marketExplaination}</Typography>
-      <Button onClick={() => navigate(`${marketUrl}`)}>더 알아보기</Button>
+      <Vertical sx={{ p: "10px 20px" }}>
+        <Typography variant="title" sx={{ mb: "6px" }}>
+          {marketName}
+        </Typography>
+        <StarRating rating={marketReview} />
+        <Typography variant="caption">{marketExplaination}</Typography>
+        <AdditionBtn onClick={() => navigate(`${marketUrl}`)}>
+          더 알아보기
+        </AdditionBtn>
+      </Vertical>
     </Vertical>
   );
 };
@@ -129,7 +136,7 @@ const StarRating = ({ rating }) => {
   const totalStars = 5;
 
   return (
-    <Box display="flex" alignItems="center">
+    <Box display="flex" alignItems="center" sx={{ mb: "10px" }}>
       {Array.from({ length: totalStars }, (_, i) =>
         i < rating ? (
           <Box component="img" src={Grade} key={i} />
@@ -157,3 +164,9 @@ const NavigateBtn = ({ img, position, onClick }) => {
     />
   );
 };
+
+const AdditionBtn = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: "white",
+  marginTop: "12px",
+}));

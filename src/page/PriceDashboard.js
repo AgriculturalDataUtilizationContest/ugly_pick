@@ -23,7 +23,7 @@ export default function PriceDashboard() {
       <Grid size={{ md: 3 }} sx={{ border: "1px solid black" }}>
         이건 왼쪽
       </Grid>
-      <Grid size={{ md: 9 }}>
+      <Grid size={{ md: 9 }} sx={{ minHeight: "calc(100vh - 100px)" }}>
         <Tabs value={tabListValue} onChange={handleChange}>
           <CustomTab label="가격 비교" value={0} />
           <CustomTab label="가격 예측" value={1} />
@@ -51,7 +51,6 @@ const Container = styled(Grid)`
   display: flex;
   flex-direction: row;
   padding: 25px 45px;
-
   .MuiTabs-indicator {
     height: 4px;
     bottom: 4px;
