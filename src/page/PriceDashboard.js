@@ -3,6 +3,7 @@ import { useState } from "react";
 import PriceCompare from "../components/PriceDashboard/Compare/PriceCompare";
 import { pxToRem } from "../theme/typography";
 import PricePredict from "../components/PriceDashboard/Predict/PricePredict";
+import Recommand from "../components/PriceDashboard/Recommand/Recommand";
 
 function TabContents(props) {
   const { children, value, index } = props;
@@ -37,6 +38,9 @@ export default function PriceDashboard() {
         </TabContents>
         <TabContents value={tabListValue} index={2}>
           Item Three
+        </TabContents>
+        <TabContents value={tabListValue} index={3}>
+          <Recommand />
         </TabContents>
       </Grid>
     </Container>
