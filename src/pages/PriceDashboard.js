@@ -5,8 +5,9 @@ import { pxToRem } from "../theme/typography";
 import PricePredict from "../components/PriceDashboard/Predict/PricePredict";
 import Recommand from "../components/PriceDashboard/Recommand/Recommand";
 import GleePick from "../components/PriceDashboard/GleePick";
-import { getCropsByCategory } from "../api/api";
+import { fetchCropRetailAndSimilar } from "../api/api";
 import IssueCheck from "../components/PriceDashboard/Issue/IssueCheck";
+import { getCropEngName } from "../utils/utils";
 
 function TabContents(props) {
   const { children, value, index } = props;
@@ -20,14 +21,6 @@ export default function PriceDashboard() {
   const handleChange = (event, newValue) => {
     setTabList(newValue);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getCropsByCategory("채소");
-      console.log(response);
-    };
-    fetchData();
-  }, []);
 
   return (
     <Container container spacing="30px">
