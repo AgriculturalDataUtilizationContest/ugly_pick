@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Group2609212_1 = ({ className }) => {
+export const Group26092121 = ({ className }) => {
   return (
     <svg
       className={`group-2609212-1 ${className}`}

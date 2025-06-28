@@ -1,7 +1,7 @@
 import React from "react";
 import { Group } from "../../../../components/Group";
 import { Link } from "../../../../components/Link";
-import { Group2609212_2 } from "../../../../icons/Group2609212_2";
+import { Group26092122 } from "../../../../icons/Group26092122/Group26092122";
 import { LineRoundedEmail1 } from "../../../../icons/LineRoundedEmail1";
 import "./style.css";
 
@@ -24,7 +24,7 @@ export const Footer = () => {
             frameClassNameOverride="design-component-instance-node"
             icon="icon-3"
             iconClassName="group-2609212"
-            override={<Group2609212_2 className="group-2609212-2" />}
+            override={<Group26092122 className="group-2609212-2" />}
           />
           <div className="frame-8">
             <div className="footer-right">

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { NeviHomeWrapper } from "./sections/NeviHomeWrapper";
 import { Container } from "./sections/Container";
 import { Div } from "./sections/Div";
 import { DivWrapper } from "./sections/DivWrapper";
@@ -34,7 +33,7 @@ export const Main = () => {
 
         <img
           className="image-2 clickable-hover"
-          alt="Image"
+          alt=""
           src="https://c.animaapp.com/TSkI5naX/img/image-158.svg"
           onClick={handleNavigate}
           style={{ cursor: "pointer" }}
@@ -100,7 +99,7 @@ export const Main = () => {
 
         <img
           className="image-3"
-          alt="Image"
+          alt=""
           src="https://c.animaapp.com/TSkI5naX/img/image-173.png"
         />
 
@@ -128,7 +127,7 @@ export const Main = () => {
 
         <img
           className="image-4"
-          alt="Image"
+          alt=""
           src="https://c.animaapp.com/TSkI5naX/img/image-174.png"
           onClick={handleNavigate}
           style={{ cursor: "pointer" }}

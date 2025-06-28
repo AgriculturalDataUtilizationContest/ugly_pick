@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Group2609212_4 } from "../../../../icons/Group2609212_4";
+import { Group26092124 } from "../../../../icons/Group26092124/Group26092124";
 import { Group } from "../../../../components/Group";
 import "./style.css";
 
@@ -8,7 +8,7 @@ export const NeviHomeWrapper = ({
   nevi,
   className,
   searchTerm = "",
-  groupIcon = <Group2609212_4 className="group-2609212-4-instance" />,
+  groupIcon = <Group26092124 className="group-2609212-4-instance" />,
 }) => {
   const navigate = useNavigate();
 

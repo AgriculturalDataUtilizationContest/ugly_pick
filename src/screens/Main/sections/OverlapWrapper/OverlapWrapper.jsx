@@ -18,7 +18,7 @@ export const OverlapWrapper = () => {
 
           <img
             className="image"
-            alt="Image"
+            alt=""
             src="https://c.animaapp.com/TSkI5naX/img/image-175.png"
           />
 

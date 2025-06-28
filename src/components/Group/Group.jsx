@@ -1,5 +1,5 @@
 import React from "react";
-import { Group2609212_1 } from "../../icons/Group2609212_1";
+import { Group26092121 } from "../../icons/Group26092121";
 import "./style.css";
 
 export const Group = ({
@@ -10,7 +10,7 @@ export const Group = ({
   frameClassNameOverride,
   divClassNameOverride,
   divClassName1,
-  override = <Group2609212_1 className="group-2609212-1" />,
+  override = <Group26092121 className="group-2609212-1" />,
 }) => {
   return (
     <>
