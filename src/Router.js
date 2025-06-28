@@ -1,21 +1,24 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import Main from "./page/Main";
-import PriceDashboard from "./page/PriceDashboard";
-import Recommand from "./components/PriceDashboard/Compare/Recommand";
-// import { IssueCheck } from "./components/PriceDashboard/Issue/IssueCheck";
+import { createBrowserRouter } from "react-router-dom";
+import { Main } from "./screens/Main";
+import CopyLink from "./components/CopyLink";
+import { Forecast } from "./pages/forecast";
+import { Search } from "./pages/search";
 
-export default function Router() {
-  return (
-    <BrowserRouter>
-      <Navigation />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/dashboard" element={<PriceDashboard />} />
-        {/* <Route path="/issuecheck" element={<IssueCheck />} /> */}
-        <Route path="recommand" element={<Recommand />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+  },
+  {
+    path: "/copy",
+    element: <CopyLink />,
+  },
+  {
+    path: "/forecast",
+    element: <Forecast />,
+  },
+  {
+    path: "/search",
+    element: <Search />,
+  },
+]);
