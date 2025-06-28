@@ -1,6 +1,6 @@
 // SidebarPick.jsx
 import React, { useEffect, useState } from "react";
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography, styled, useTheme } from "@mui/material";
 import { Vertical, Horizontal } from "../../style/CommunalStyle";
 import { fetchCropRetailAndSimilar } from "../../api/api";
 import { formatToKRW, getCropEngName } from "../../utils/utils";
@@ -9,10 +9,11 @@ import PriceCardChart from "./PriceCardChart";
 export default function GleePick() {
   const [otherItem, setOtherItem] = useState(null);
   const [retailPrice, setRetailPrice] = useState([]);
+  const theme = useTheme();
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchCropRetailAndSimilar(getCropEngName("양파"));
-      console.log(response);
       setOtherItem(response.data.otherCrops);
       setRetailPrice(response.data.retailPrice);
     };
@@ -28,6 +29,7 @@ export default function GleePick() {
             fontWeight={700}
             textAlign="center"
             mb={2}
+            sx={{ color: theme.palette.primary.gray2 }}
           >
             GLEE PICK
           </Typography>
@@ -60,16 +62,30 @@ export default function GleePick() {
           </Box>
         </Card>
 
-        <Card>
+        <Card
+          sx={{
+            maxHeight: "500px",
+            overflow: "auto",
+            flexShrink: "0",
+          }}
+        >
           <Typography
             variant="subtitle"
-            fontWeight={700}
             textAlign="center"
+            pb={2}
             mb={2}
+            sx={{
+              color: theme.palette.primary.gray2,
+              borderBottom: "0.4px solid #F1F1F1;",
+            }}
           >
             NEXT ITEM
           </Typography>
-          <Vertical sx={{ gap: 2 }}>
+          <Vertical
+            sx={{
+              gap: 2,
+            }}
+          >
             {otherItem.map((itm, idx) => (
               <Horizontal
                 key={idx}
@@ -105,6 +121,8 @@ const Card = styled(Box)(({ theme }) => ({
   borderRadius: "12px",
   padding: "20px",
   boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.05)",
+  display: "flex",
+  flexDirection: "column",
 }));
 
 const PlaceholderBox = styled(Box)(({ height, width, mt }) => ({

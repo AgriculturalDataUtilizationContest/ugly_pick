@@ -20,19 +20,19 @@ export default function Recommand(props) {
         <Box sx={{ display: "flex" }}>
           <Box
             component="img"
-            src={info.img}
+            src={info.cropsImage}
             alt="작물 이미지"
             sx={{ width: "32px", height: "32px", mr: "20px" }}
           />
           <Vertical>
             <Typography variant="subtitle" sx={{ mb: "8px" }}>
-              {info.name}
+              {info.cropName}
             </Typography>
             <Typography
               variant="title"
               sx={{ fontSize: pxToRem(28), mb: "5px" }}
             >
-              {formatToKRW(info.price)}{" "}
+              {formatToKRW(info.cropPrice)}{" "}
               <Typography variant="subtitle" sx={{ color: "#636466" }}>
                 원
               </Typography>
@@ -46,12 +46,12 @@ export default function Recommand(props) {
                 어제보다
               </Typography>
               <Typography variant="sub">
-                {formatSignedNumber(info.rate)}%
+                {formatSignedNumber(info.increaseRate)}%
               </Typography>
             </Horizontal>
           </Vertical>
         </Box>
-        <Typography variant="sub">{info.category}</Typography>
+        <Typography variant="sub">{info.cropCategory}</Typography>
       </Horizontal>
       <Typography
         variant="sub"

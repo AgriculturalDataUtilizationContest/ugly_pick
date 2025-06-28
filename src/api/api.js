@@ -32,3 +32,19 @@ export const fetchCropRetailAndSimilar = async (cropName) => {
     throw error;
   }
 };
+
+export const fetchPriceCompateInfo = async (cropName, pathVariable) => {
+  try {
+    const url = `${process.env.REACT_APP_BASE_URL}/api/comparison/${pathVariable}/${cropName}`;
+
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log("ERROR : get crops by category", error);
+    throw error;
+  }
+};

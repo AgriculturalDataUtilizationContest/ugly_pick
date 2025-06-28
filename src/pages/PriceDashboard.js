@@ -1,13 +1,11 @@
 import { Box, Grid, styled, Tab, Tabs } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PriceCompare from "../components/PriceDashboard/Compare/PriceCompare";
 import { pxToRem } from "../theme/typography";
 import PricePredict from "../components/PriceDashboard/Predict/PricePredict";
 import Recommand from "../components/PriceDashboard/Recommand/Recommand";
 import GleePick from "../components/PriceDashboard/GleePick";
-import { fetchCropRetailAndSimilar } from "../api/api";
 import IssueCheck from "../components/PriceDashboard/Issue/IssueCheck";
-import { getCropEngName } from "../utils/utils";
 
 function TabContents(props) {
   const { children, value, index } = props;
