@@ -1,9 +1,11 @@
 import { Box, Grid, styled, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PriceCompare from "../components/PriceDashboard/Compare/PriceCompare";
 import { pxToRem } from "../theme/typography";
 import PricePredict from "../components/PriceDashboard/Predict/PricePredict";
 import Recommand from "../components/PriceDashboard/Recommand/Recommand";
+import GleePick from "../components/PriceDashboard/GleePick";
+import { getCropsByCategory } from "../api/api";
 
 function TabContents(props) {
   const { children, value, index } = props;
@@ -18,10 +20,17 @@ export default function PriceDashboard() {
     setTabList(newValue);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getCropsByCategory("채소");
+    };
+    fetchData();
+  }, []);
+
   return (
     <Container container spacing="30px">
-      <Grid size={{ md: 3 }} sx={{ border: "1px solid black" }}>
-        이건 왼쪽
+      <Grid size={{ md: 3 }}>
+        <GleePick />
       </Grid>
       <Grid size={{ md: 9 }} sx={{ minHeight: "calc(100vh - 100px)" }}>
         <Tabs value={tabListValue} onChange={handleChange}>
