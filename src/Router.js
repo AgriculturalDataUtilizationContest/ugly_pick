@@ -1,24 +1,28 @@
-import { createBrowserRouter } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import Navigation from "./components/Navigation";
 import { Main } from "./screens/Main";
-import CopyLink from "./components/CopyLink";
-import { Forecast } from "./pages/forecast";
-import { Search } from "./pages/search";
+import PriceDashboard from "./pages/PriceDashboard";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-  },
-  {
-    path: "/copy",
-    element: <CopyLink />,
-  },
-  {
-    path: "/forecast",
-    element: <Forecast />,
-  },
-  {
-    path: "/search",
-    element: <Search />,
-  },
-]);
+function AppRoutes() {
+  const location = useLocation();
+  const hideNav = location.pathname === "/";
+
+  return (
+    <>
+      {!hideNav && <Navigation />}
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/forecast" element={<PriceDashboard />} />
+      </Routes>
+    </>
+  );
+}
+
+export default function Router() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+}
