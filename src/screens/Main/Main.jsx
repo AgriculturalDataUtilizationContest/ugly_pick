@@ -21,7 +21,6 @@ export const Main = () => {
 
   return (
     <div className="main" data-model-id="246:160">
-
       <div className="overlap-3">
         <img
           className="rectangle"
@@ -56,12 +55,13 @@ export const Main = () => {
                     <div className="overlap-6">
                       <div className="group-9">
                         <div className="overlap-group-2">
-                          <div
-                            className="rectangle-2"
-                          />
+                          <div className="rectangle-2" />
                           <img
                             className="barcode-image"
-                            src={process.env.PUBLIC_URL + "/assets/uglypick-barcode.png"}
+                            src={
+                              process.env.PUBLIC_URL +
+                              "/assets/uglypick-barcode.png"
+                            }
                             alt="UGLY PICK 바코드"
                           />
                         </div>

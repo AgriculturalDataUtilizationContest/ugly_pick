@@ -6,6 +6,7 @@ import PricePredict from "../components/PriceDashboard/Predict/PricePredict";
 import Recommand from "../components/PriceDashboard/Recommand/Recommand";
 import GleePick from "../components/PriceDashboard/GleePick";
 import { getCropsByCategory } from "../api/api";
+import IssueCheck from "../components/PriceDashboard/Issue/IssueCheck";
 
 function TabContents(props) {
   const { children, value, index } = props;
@@ -23,6 +24,7 @@ export default function PriceDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getCropsByCategory("채소");
+      console.log(response);
     };
     fetchData();
   }, []);
@@ -46,7 +48,7 @@ export default function PriceDashboard() {
           <PricePredict />
         </TabContents>
         <TabContents value={tabListValue} index={2}>
-          Item Three
+          <IssueCheck />
         </TabContents>
         <TabContents value={tabListValue} index={3}>
           <Recommand />
