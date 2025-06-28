@@ -1,12 +1,16 @@
 import React from "react";
-import { router } from "./Router";
 import { RouterProvider } from "react-router-dom";
-import { CssBaseline } from "@mui/material";
+import { router } from "./Router";
+import ThemeProvider from "./theme/ThemeProvider";
 import GlobalStyle from "./style/globalStyle";
+import { CssBaseline } from "@mui/material";
+
 function App() {
   return (
     <ThemeProvider>
-      <Router />
+      <GlobalStyle />
+      <CssBaseline />
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 }
