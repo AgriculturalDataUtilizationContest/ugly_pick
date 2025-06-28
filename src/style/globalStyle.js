@@ -1,6 +1,6 @@
 import { GlobalStyles as MUIGlobalStyles } from "@mui/material";
-//import "../font/Font.module.css";
-import React from "react";
+
+const isWindows = navigator.platform.toLowerCase().includes("win");
 
 export default function GlobalStyle() {
   const inputGlobalStyle = (
@@ -8,13 +8,22 @@ export default function GlobalStyle() {
       styles={{
         "*": {
           boxSizing: "border-box",
-          fontFamily: "Pretendard-Regular",
+          fontFamily: "Pretendard Variable",
+          ...(isWindows
+            ? {
+                textShadow: "0 0 1px rgba(0,0,0,0.3)",
+              }
+            : {
+                WebkitFontSmoothing: "antialiased",
+                MozOsxFontSmoothing: "grayscale",
+                fontSmooth: "never",
+              }),
         },
         html: {
           margin: 0,
           padding: 0,
           width: "100%",
-          height: "100%",
+          // height: "100%",
           //WebkitOverflowScrolling: "touch",
         },
         body: {
@@ -28,6 +37,7 @@ export default function GlobalStyle() {
           height: "100%",
         },
         input: {
+          outline: "none",
           "&[type=number]": {
             MozAppearance: "textfield",
             "&::-webkit-outer-spin-button": {
@@ -52,6 +62,9 @@ export default function GlobalStyle() {
         a: {
           textDecoration: "none",
           color: "inherit",
+        },
+        span: {
+          whiteSpace: "pre-line",
         },
       }}
     />
