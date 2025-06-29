@@ -33,7 +33,7 @@ export const Select = () => {
     if (selectedItem) {
       setLoading(true); // 로딩 시작
       setTimeout(() => {
-        navigate(`/forecast?item=${encodeURIComponent(selectedItem.name)}`);
+        navigate(`/forecast?crop=${encodeURIComponent(selectedItem.name)}`);
       }, 2000); // 2초 후 이동
     }
   };
@@ -58,7 +58,10 @@ export const Select = () => {
         <div className={styles.rightColumn}>
           <ItemListSection />
           <FilterOptionsSection />
-          <PriceComparisonSection onReset={handleReset} onAnalyze={handleAnalyze} />
+          <PriceComparisonSection
+            onReset={handleReset}
+            onAnalyze={handleAnalyze}
+          />
         </div>
       </div>
     </main>
