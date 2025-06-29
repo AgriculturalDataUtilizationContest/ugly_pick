@@ -28,12 +28,12 @@ export const OverlapWrapper = () => {
         </div>
 
         <div className="frame-14">
-          <div className="text-wrapper-16">이게 이 가격이라고?</div>
+          <div className="text-wrapper-16">이렇게까지 편리할 수 있다고?</div>
 
           <p className="a-2">
-            못난이 농산물은 가격이 놀랍도록 착합니다.
+            드래그 앤 드롭으로 장바구니에 담고,
             <br />
-            A급 품질과 비교해 최대 50% 절약할 수 있어요.
+            일반/못난이 실시간 가격 비교로 바로 확인해보세요!
           </p>
         </div>
       </div>
