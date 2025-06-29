@@ -7,7 +7,7 @@ import { Footer } from "./sections/Footer";
 import { Frame } from "./sections/Frame";
 import { FrameWrapper } from "./sections/FrameWrapper";
 import { OverlapWrapper } from "./sections/OverlapWrapper";
-import { SectionComponentNode } from "./sections/SectionComponentNode";
+// import { SectionComponentNode } from "./sections/SectionComponentNode";
 
 import "./style.css";
 
@@ -137,7 +137,7 @@ export const Main = () => {
       </div>
 
       <OverlapWrapper />
-      <SectionComponentNode />
+      {/* <SectionComponentNode /> */}
       <Container />
     </div>
   );

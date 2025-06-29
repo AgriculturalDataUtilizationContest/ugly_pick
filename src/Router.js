@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import { Main } from "./pages/Main";
+import { Select } from "./pages/Select/Select";
 import PriceDashboard from "./pages/PriceDashboard";
 
 function AppRoutes() {
@@ -14,6 +15,7 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/forecast" element={<PriceDashboard />} />
+        <Route path="/select" element={<Select />} />
       </Routes>
     </>
   );
