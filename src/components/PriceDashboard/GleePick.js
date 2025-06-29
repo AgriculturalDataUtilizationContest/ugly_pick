@@ -6,19 +6,19 @@ import { fetchCropRetailAndSimilar } from "../../api/api";
 import { formatToKRW, getCropEngName } from "../../utils/utils";
 import PriceCardChart from "./PriceCardChart";
 
-export default function GleePick() {
+export default function GleePick({ crop }) {
   const [otherItem, setOtherItem] = useState(null);
   const [retailPrice, setRetailPrice] = useState([]);
   const theme = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetchCropRetailAndSimilar(getCropEngName("양파"));
+      const response = await fetchCropRetailAndSimilar(getCropEngName(crop));
       setOtherItem(response.data.otherCrops);
       setRetailPrice(response.data.retailPrice);
     };
     fetchData();
-  }, []);
+  }, [crop]);
   return (
     otherItem &&
     retailPrice && (

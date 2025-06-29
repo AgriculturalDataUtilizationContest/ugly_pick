@@ -7,9 +7,9 @@ import { pxToRem } from "../../../theme/typography";
 import { compareInfo } from "../../../utils/common";
 import DigitContainer from "./DigitContainer";
 import Recommand from "./Recommand";
-import { fetchPriceCompateInfo } from "../../../api/api";
+import { fetchPriceCompareInfo } from "../../../api/api";
 
-export default function PriceCompare() {
+export default function PriceCompare({ crop }) {
   const todayDate = KoreanDate();
   const [priceInfo, setPriceInfo] = useState("");
   const [recommandList, setRecommandList] = useState([]);
@@ -23,20 +23,21 @@ export default function PriceCompare() {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const priceData = await fetchPriceCompateInfo(
-        getCropEngName("양파"),
+      const priceData = await fetchPriceCompareInfo(
+        getCropEngName(crop),
         "price"
       );
       setPriceInfo(priceData.data);
 
-      const recommandData = await fetchPriceCompateInfo(
+      const recommandData = await fetchPriceCompareInfo(
         getCropEngName("양파"),
         "category"
       );
+      console.log(recommandData);
       setRecommandList(recommandData.data.cropList);
     };
     fetchData();
-  }, []);
+  }, [crop]);
 
   return (
     priceInfo && (

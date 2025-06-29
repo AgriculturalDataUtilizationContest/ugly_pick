@@ -28,12 +28,12 @@ export const fetchCropRetailAndSimilar = async (cropName) => {
     });
     return response;
   } catch (error) {
-    console.log("ERROR : get crops by category", error);
+    console.log("ERROR : get crop retail price and similar crop price", error);
     throw error;
   }
 };
 
-export const fetchPriceCompateInfo = async (cropName, pathVariable) => {
+export const fetchPriceCompareInfo = async (cropName, pathVariable) => {
   try {
     const url = `${process.env.REACT_APP_BASE_URL}/api/comparison/${pathVariable}/${cropName}`;
 
@@ -43,6 +43,38 @@ export const fetchPriceCompateInfo = async (cropName, pathVariable) => {
       },
     });
     return response;
+  } catch (error) {
+    console.log("ERROR : get compare price info", error);
+    throw error;
+  }
+};
+
+export const getPopularCrops = async () => {
+  try {
+    const url = `${process.env.REACT_APP_BASE_URL}/api/comparison/category/채소`;
+
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data.cropList.sort(() => Math.random() - 0.5).slice(0, 3);
+  } catch (error) {
+    console.log("ERROR : get crops by category", error);
+    throw error;
+  }
+};
+
+export const getSeasonsCrops = async () => {
+  try {
+    const url = `${process.env.REACT_APP_BASE_URL}/api/search/two`;
+
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data.cropList;
   } catch (error) {
     console.log("ERROR : get crops by category", error);
     throw error;

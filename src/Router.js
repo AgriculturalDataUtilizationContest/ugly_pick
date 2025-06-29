@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import { Main } from "./pages/Main";
 import PriceDashboard from "./pages/PriceDashboard";
+import Search from "./pages/Search";
 
 function AppRoutes() {
   const location = useLocation();
@@ -14,6 +15,7 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/forecast" element={<PriceDashboard />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </>
   );
