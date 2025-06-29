@@ -1,12 +1,12 @@
 import { Box, Grid, styled, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PriceCompare from "../components/PriceDashboard/Compare/PriceCompare";
 import { pxToRem } from "../theme/typography";
 import PricePredict from "../components/PriceDashboard/Predict/PricePredict";
 import Recommand from "../components/PriceDashboard/Recommand/Recommand";
 import GleePick from "../components/PriceDashboard/GleePick";
 import IssueCheck from "../components/PriceDashboard/Issue/IssueCheck";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function TabContents(props) {
   const { children, value, index } = props;
@@ -17,11 +17,18 @@ function TabContents(props) {
 export default function PriceDashboard() {
   const [tabListValue, setTabList] = useState(0);
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate("");
   const crop = searchParams.get("crop");
 
   const handleChange = (event, newValue) => {
     setTabList(newValue);
   };
+
+  useEffect(() => {
+    if (!crop) {
+      navigate("/");
+    }
+  }, [crop, navigate]);
 
   return (
     crop && (
@@ -40,7 +47,7 @@ export default function PriceDashboard() {
             <PriceCompare crop={crop} />
           </TabContents>
           <TabContents value={tabListValue} index={1}>
-            <PricePredict />
+            <PricePredict crop={crop} />
           </TabContents>
           <TabContents value={tabListValue} index={2}>
             <IssueCheck />

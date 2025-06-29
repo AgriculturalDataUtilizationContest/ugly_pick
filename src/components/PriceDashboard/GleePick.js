@@ -1,4 +1,3 @@
-// SidebarPick.jsx
 import React, { useEffect, useState } from "react";
 import { Box, Typography, styled, useTheme } from "@mui/material";
 import { Vertical, Horizontal } from "../../style/CommunalStyle";
