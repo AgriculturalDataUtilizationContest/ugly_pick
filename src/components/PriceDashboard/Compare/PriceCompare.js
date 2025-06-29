@@ -9,7 +9,7 @@ import DigitContainer from "./DigitContainer";
 import Recommand from "./Recommand";
 import { fetchPriceCompareInfo } from "../../../api/api";
 
-export default function PriceCompare({ crop }) {
+export default function PriceCompare({ crop, category }) {
   const todayDate = KoreanDate();
   const [priceInfo, setPriceInfo] = useState("");
   const [recommandList, setRecommandList] = useState([]);
@@ -29,15 +29,12 @@ export default function PriceCompare({ crop }) {
       );
       setPriceInfo(priceData.data);
 
-      const recommandData = await fetchPriceCompareInfo(
-        getCropEngName("양파"),
-        "category"
-      );
+      const recommandData = await fetchPriceCompareInfo(category, "category");
       console.log(recommandData);
       setRecommandList(recommandData.data.cropList);
     };
     fetchData();
-  }, [crop]);
+  }, [crop, category]);
 
   return (
     priceInfo && (

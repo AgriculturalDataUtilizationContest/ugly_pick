@@ -19,6 +19,7 @@ export default function PriceDashboard() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate("");
   const crop = searchParams.get("crop");
+  const category = searchParams.get("category");
 
   const handleChange = (event, newValue) => {
     setTabList(newValue);
@@ -44,7 +45,7 @@ export default function PriceDashboard() {
             <CustomTab label="농산물 추천" value={3} />
           </Tabs>
           <TabContents value={tabListValue} index={0}>
-            <PriceCompare crop={crop} />
+            <PriceCompare crop={crop} category={category} />
           </TabContents>
           <TabContents value={tabListValue} index={1}>
             <PricePredict crop={crop} />
