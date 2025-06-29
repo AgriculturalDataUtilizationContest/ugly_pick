@@ -30,7 +30,6 @@ export default function PriceCompare({ crop, category }) {
       setPriceInfo(priceData.data);
 
       const recommandData = await fetchPriceCompareInfo(category, "category");
-      console.log(recommandData);
       setRecommandList(recommandData.data.cropList);
     };
     fetchData();

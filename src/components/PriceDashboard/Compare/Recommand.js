@@ -4,6 +4,7 @@ import { Horizontal, Vertical } from "../../../style/CommunalStyle";
 import { pxToRem } from "../../../theme/typography";
 import { formatSignedNumber, formatToKRW } from "../../../utils/utils";
 import TrendUp from "../../../assets/trendingUp.svg";
+import NonImg from "../../../assets/NonImg.png";
 
 export default function Recommand(props) {
   const { info } = props;
@@ -20,7 +21,9 @@ export default function Recommand(props) {
         <Box sx={{ display: "flex" }}>
           <Box
             component="img"
-            src={info.cropsImage}
+            src={
+              info.cropsImage?.startsWith("https") ? info.cropsImage : NonImg
+            }
             alt="작물 이미지"
             sx={{ width: "32px", height: "32px", mr: "20px" }}
           />

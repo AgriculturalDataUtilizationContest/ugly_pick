@@ -51,7 +51,7 @@ export default function PriceDashboard() {
             <PricePredict crop={crop} />
           </TabContents>
           <TabContents value={tabListValue} index={2}>
-            <IssueCheck />
+            <IssueCheck crop={crop} />
           </TabContents>
           <TabContents value={tabListValue} index={3}>
             <Recommand />
