@@ -4,7 +4,6 @@ import { Box, Button, styled, Typography } from "@mui/material";
 import { recommandInfo } from "../../../utils/common";
 
 import NonImg from "../../../assets/NonImg.png";
-import { useNavigate } from "react-router-dom";
 import LeftBtn from "../../../assets/LeftBtn.svg";
 import RightBtn from "../../../assets/RightBtn.svg";
 import { getRecommandList } from "../../../api/api";
@@ -66,7 +65,6 @@ export default function Recommand({ crop }) {
 
 const Item = (props) => {
   const { marketImage, marketName, marketExplaination, marketUrl } = props;
-  const navigate = useNavigate();
   return (
     <Vertical
       sx={{
