@@ -60,3 +60,25 @@ const cropNameMap = {
 export function getCropEngName(korName) {
   return cropNameMap[korName] || "Unknown Crop";
 }
+
+const cropCategoryMap = {
+  고구마: "식량작물",
+  파: "채소",
+  양파: "채소",
+  사과: "과일",
+  배: "과일",
+  감귤: "과일",
+  참외: "채소",
+  감자: "식량작물",
+  양배추: "채소",
+  배추: "채소",
+  수박: "채소",
+  상추: "채소",
+  호박: "채소",
+  딸기: "채소",
+  무: "채소",
+};
+
+export function getCropCategory(korName) {
+  return cropCategoryMap[korName] || null;
+}

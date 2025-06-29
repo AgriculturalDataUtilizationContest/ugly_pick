@@ -7,6 +7,7 @@ import Recommand from "../components/PriceDashboard/Recommand/Recommand";
 import GleePick from "../components/PriceDashboard/GleePick";
 import IssueCheck from "../components/PriceDashboard/Issue/IssueCheck";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { getCropCategory } from "../utils/utils";
 
 function TabContents(props) {
   const { children, value, index } = props;
@@ -19,7 +20,7 @@ export default function PriceDashboard() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate("");
   const crop = searchParams.get("crop");
-  const category = searchParams.get("category");
+  const category = getCropCategory(crop);
 
   const handleChange = (event, newValue) => {
     setTabList(newValue);
