@@ -20,11 +20,7 @@ export default function Navigation() {
   useEffect(() => {
     if (!searchRef.current) return;
 
-    if (location.pathname === "/") {
-      searchRef.current.style.visibility = "hidden";
-    } else {
-      searchRef.current.style.visibility = "visible";
-    }
+    searchRef.current.style.visibility = "hidden";
   }, [location.pathname]);
   return (
     <Container container spacing={2}>

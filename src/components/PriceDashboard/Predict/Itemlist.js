@@ -11,28 +11,29 @@ import {
   Paper,
 } from "@mui/material";
 
-const rawData = {
-  retailPrice: ["06/12: 4000", "06/13: 3000", "06/14: 3000", "06/15: 3000"],
-  uglyPrice: ["06/12: 4000", "06/13: 3000", "06/14: 3000", "06/15: 3000"],
-};
-
-const formatData = (dataArray) => {
-  return dataArray.reduce((acc, item) => {
-    const [date, value] = item.split(":").map((s) => s.trim());
-    acc[date] = Number(value);
+export default function Itemlist({ priceData }) {
+  // 배열 → 날짜를 key로 하는 객체로 변환
+  const retailMap = priceData.retailPrice.reduce((acc, cur) => {
+    acc[cur.date] = cur.price;
     return acc;
   }, {});
-};
+  const uglyMap = priceData.uglyPrice.reduce((acc, cur) => {
+    acc[cur.date] = cur.price;
+    return acc;
+  }, {});
 
-const retailData = formatData(rawData.retailPrice);
-const uglyData = formatData(rawData.uglyPrice);
-const dates = Object.keys(retailData);
-const today = "06/13"; // 현재 시점 강조용
+  const dates = Object.keys(retailMap); // 날짜 목록
+  const today = new Date()
+    .toLocaleDateString("ko-KR", {
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replace(". ", "/")
+    .replace(".", "");
 
-export default function Itemlist() {
   return (
-    <TableContainer component={Paper} sx={{ border: "1px solid #2196f3" }}>
-      <Table>
+    <TableContainer component={Paper} sx={{ border: "none", mt: "30px" }}>
+      <Table sx={{ border: "none" }}>
         <TableHead>
           <TableRow>
             <TableCell sx={{ fontWeight: "bold" }}>ITEM LIST</TableCell>
@@ -62,7 +63,9 @@ export default function Itemlist() {
                     date === today ? "rgba(44, 151, 119, 0.2)" : "transparent",
                 }}
               >
-                {uglyData[date].toLocaleString()}
+                {uglyMap[date] != null
+                  ? Math.round(uglyMap[date]).toLocaleString()
+                  : "-"}
               </TableCell>
             ))}
           </TableRow>
@@ -79,7 +82,9 @@ export default function Itemlist() {
             </TableCell>
             {dates.map((date) => (
               <TableCell key={date} align="center">
-                {retailData[date].toLocaleString()}
+                {retailMap[date] != null
+                  ? Math.round(retailMap[date]).toLocaleString()
+                  : "-"}
               </TableCell>
             ))}
           </TableRow>

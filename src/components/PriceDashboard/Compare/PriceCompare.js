@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Vertical, Horizontal } from "../../../style/CommunalStyle";
 import { Box, Grid, styled, Typography } from "@mui/material";
 import UglyPostImg from "../../../assets/UglyPost.svg";
-import { formatToKRW, KoreanDate } from "../../../utils/utils";
+import { formatToKRW, getCropEngName, KoreanDate } from "../../../utils/utils";
 import { pxToRem } from "../../../theme/typography";
-import { compareInfo, recommandList } from "../../../utils/common";
+import { compareInfo } from "../../../utils/common";
 import DigitContainer from "./DigitContainer";
 import Recommand from "./Recommand";
+import { fetchPriceCompareInfo } from "../../../api/api";
 
-export default function PriceCompare() {
+export default function PriceCompare({ crop, category }) {
   const todayDate = KoreanDate();
   const [priceInfo, setPriceInfo] = useState("");
-  const [todayPrice, setTodayPrice] = useState("");
+  const [recommandList, setRecommandList] = useState([]);
 
   const [count, setCount] = useState(5);
 
@@ -20,25 +21,22 @@ export default function PriceCompare() {
 
     setCount(value);
   };
-
   useEffect(() => {
-    const info = {
-      discountPrice: 1500,
-      discountRatio: 48,
-      price: 15000,
-    };
-    setPriceInfo(info);
+    const fetchData = async () => {
+      const priceData = await fetchPriceCompareInfo(
+        getCropEngName(crop),
+        "price"
+      );
+      setPriceInfo(priceData.data);
 
-    const todayInfo = {
-      uglyPrice: 2000,
-      marketPrice: 3500,
+      const recommandData = await fetchPriceCompareInfo(category, "category");
+      setRecommandList(recommandData.data.cropList);
     };
-    setTodayPrice(todayInfo);
-  }, []);
+    fetchData();
+  }, [crop, category]);
 
   return (
-    priceInfo &&
-    todayPrice && (
+    priceInfo && (
       <Vertical>
         <Horizontal sx={{ mb: "43px" }}>
           <Typography variant="title" sx={{ marginRight: "30px" }}>
@@ -72,13 +70,13 @@ export default function PriceCompare() {
                 sx={{ alignItems: "flex-end", flexWrap: "wrap", mb: "60px" }}
               >
                 <PriceWrapper>
-                  {priceInfo.discountPrice}
+                  {priceInfo.difference}
                   <Typography variant="unit" sx={{ marginLeft: "10px" }}>
                     원
                   </Typography>
                 </PriceWrapper>
                 <PriceWrapper>
-                  {priceInfo.discountRatio}
+                  {priceInfo.discountRate}
                   <Typography variant="unit" sx={{ marginLeft: "10px" }}>
                     %
                   </Typography>
@@ -125,7 +123,7 @@ export default function PriceCompare() {
                     p: "0 16px",
                   }}
                 >
-                  {formatToKRW(count * priceInfo.price)}
+                  {formatToKRW(count * priceInfo.uglyPrice)}
                 </PriceWrapper>
                 <Typography
                   variant="sub"
@@ -155,9 +153,9 @@ export default function PriceCompare() {
             <Typography variant="caption" sx={{ mb: "15px" }}>
               {todayDate}
             </Typography>
-            <DigitContainer price={todayPrice.uglyPrice} topic="ugly price" />
+            <DigitContainer price={priceInfo.uglyPrice} topic="ugly price" />
             <DigitContainer
-              price={todayPrice.marketPrice}
+              price={priceInfo.marketPrice}
               topic="market price"
             />
           </Grid>

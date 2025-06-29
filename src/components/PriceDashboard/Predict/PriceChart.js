@@ -25,6 +25,65 @@ const data = [
 // 현재 시점 기준 ReferenceArea 시작 인덱스
 const currentIndex = data.findIndex((d) => d.date === "06/10");
 
+export default function PriceChart({ priceData }) {
+  const { width, ref } = useResizeDetector();
+  return (
+    priceData && (
+      <div ref={ref} style={{ width: "100%" }}>
+        <LineChart width={width} height={300} data={priceData}>
+          <CartesianGrid stroke="#eee" />
+          <XAxis
+            dataKey="date"
+            tick={{ fontSize: 12, fontWeight: 600 }}
+            stroke="#999"
+          />
+          <YAxis
+            tick={{ fontSize: 12 }}
+            stroke="#999"
+            domain={[0, 35]}
+            tickFormatter={(v) => `${v}원`}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend
+            verticalAlign="top"
+            iconType="circle"
+            formatter={(value) => {
+              if (value === "ugly") return "못난이 상품 소매 가격";
+              if (value === "market") return "시장 상품 소매 가격";
+              return value;
+            }}
+          />
+          {/* 미래 시점 배경 강조 */}
+          <ReferenceArea
+            x1={priceData[currentIndex].date}
+            x2={priceData[priceData.length - 1].date}
+            strokeOpacity={0}
+            fill="rgba(44, 151, 119, 0.08)"
+          />
+          {/* 시장 상품 라인 */}
+          <Line
+            // type="monotone"
+            dataKey="market"
+            stroke="#666"
+            strokeWidth={2}
+            dot={{ r: 4, strokeWidth: 2, fill: "white", stroke: "#666" }}
+            activeDot={{ r: 5 }}
+          />
+          {/* 못난이 상품 라인 */}
+          <Line
+            // type="monotone"
+            dataKey="ugly"
+            stroke="#2C9777"
+            strokeWidth={2}
+            dot={{ r: 4, strokeWidth: 2, fill: "white", stroke: "#2C9777" }}
+            activeDot={{ r: 5 }}
+          />
+        </LineChart>
+      </div>
+    )
+  );
+}
+
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload) return null;
   const ugly = payload.find((p) => p.dataKey === "ugly");
@@ -54,60 +113,3 @@ const CustomTooltip = ({ active, payload, label }) => {
     </Box>
   );
 };
-
-export default function PriceChart() {
-  const { width, ref } = useResizeDetector();
-  return (
-    <div ref={ref} style={{ width: "100%" }}>
-      <LineChart width={width} height={300} data={data}>
-        <CartesianGrid stroke="#eee" />
-        <XAxis
-          dataKey="date"
-          tick={{ fontSize: 12, fontWeight: 600 }}
-          stroke="#999"
-        />
-        <YAxis
-          tick={{ fontSize: 12 }}
-          stroke="#999"
-          domain={[0, 35]}
-          tickFormatter={(v) => `${v}원`}
-        />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend
-          verticalAlign="top"
-          iconType="circle"
-          formatter={(value) => {
-            if (value === "ugly") return "못난이 상품 소매 가격";
-            if (value === "market") return "시장 상품 소매 가격";
-            return value;
-          }}
-        />
-        {/* 미래 시점 배경 강조 */}
-        <ReferenceArea
-          x1={data[currentIndex].date}
-          x2={data[data.length - 1].date}
-          strokeOpacity={0}
-          fill="rgba(44, 151, 119, 0.08)"
-        />
-        {/* 시장 상품 라인 */}
-        <Line
-          // type="monotone"
-          dataKey="market"
-          stroke="#666"
-          strokeWidth={2}
-          dot={{ r: 4, strokeWidth: 2, fill: "white", stroke: "#666" }}
-          activeDot={{ r: 5 }}
-        />
-        {/* 못난이 상품 라인 */}
-        <Line
-          // type="monotone"
-          dataKey="ugly"
-          stroke="#2C9777"
-          strokeWidth={2}
-          dot={{ r: 4, strokeWidth: 2, fill: "white", stroke: "#2C9777" }}
-          activeDot={{ r: 5 }}
-        />
-      </LineChart>
-    </div>
-  );
-}

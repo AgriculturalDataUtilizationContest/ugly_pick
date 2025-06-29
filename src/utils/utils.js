@@ -38,3 +38,25 @@ export function KoreanDate() {
 
   return formattedDate;
 }
+
+const cropNameMap = {
+  고구마: "Sweet Potato",
+  파: "Green Onion",
+  양파: "Onion",
+  사과: "Apple",
+  배: "Pear",
+  감귤: "Tangerine",
+  참외: "Oriental Melon",
+  감자: "Potato",
+  양배추: "Cabbage",
+  배추: "Chinese Cabbage",
+  수박: "Watermelon",
+  상추: "Lettuce",
+  호박: "Pumpkin",
+  딸기: "Strawberry",
+  무: "Radish",
+};
+
+export function getCropEngName(korName) {
+  return cropNameMap[korName] || "Unknown Crop";
+}
