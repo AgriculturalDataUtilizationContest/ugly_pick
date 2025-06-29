@@ -54,7 +54,7 @@ export default function PriceDashboard() {
             <IssueCheck crop={crop} />
           </TabContents>
           <TabContents value={tabListValue} index={3}>
-            <Recommand />
+            <Recommand crop={crop} />
           </TabContents>
         </Grid>
       </Container>

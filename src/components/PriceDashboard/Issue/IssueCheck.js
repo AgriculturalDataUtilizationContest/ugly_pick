@@ -6,12 +6,6 @@ import NonImg from "../../../assets/NonImg.png";
 import { getRecentIssue } from "../../../api/api";
 import { getCropEngName } from "../../../utils/utils";
 
-const dummyNewsList = [
-  { title: "과수화상병 확산에…", desc: "병해충 피해 우려들…", img: null },
-  { title: "과수화상병 확산에…", desc: "병해충 피해 우려들…", img: null },
-  { title: "과수화상병 확산에…", desc: "병해충 피해 우려들…", img: null },
-];
-
 export default function IssueCheck({ crop }) {
   const [issueInfo, setIssueInfo] = useState(null);
   useEffect(() => {

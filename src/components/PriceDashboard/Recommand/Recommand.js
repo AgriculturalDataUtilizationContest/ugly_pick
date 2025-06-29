@@ -2,49 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { Horizontal, Vertical } from "../../../style/CommunalStyle";
 import { Box, Button, styled, Typography } from "@mui/material";
 import { recommandInfo } from "../../../utils/common";
-import Grade from "../../../assets/Grade.svg";
-import NonGrade from "../../../assets/NonGrade.svg";
+
 import NonImg from "../../../assets/NonImg.png";
 import { useNavigate } from "react-router-dom";
 import LeftBtn from "../../../assets/LeftBtn.svg";
 import RightBtn from "../../../assets/RightBtn.svg";
+import { getRecommandList } from "../../../api/api";
+import { getCropEngName } from "../../../utils/utils";
 
-const mock_data = [
-  {
-    marketImage:
-      "https://cdn.ccdn.co.kr/news/photo/202203/752446_326271_1714.jpg",
-    marketName: "청송사과",
-    marketReview: 1,
-    marketExplaination: "이 사과 맛나요",
-    marketUrl: "https~~~",
-  },
-  {
-    marketImage:
-      "https://cdn.ccdn.co.kr/news/photo/202203/752446_326271_1714.jpg",
-    marketName: "청송사과",
-    marketReview: 2,
-    marketExplaination: "이 사과 맛나요",
-    marketUrl: "https~~~",
-  },
-  {
-    marketImage:
-      "https://cdn.ccdn.co.kr/news/photo/202203/752446_326271_1714.jpg",
-    marketName: "청송사과",
-    marketReview: 3,
-    marketExplaination: "이 사과 맛나요",
-    marketUrl: "https~~~",
-  },
-  {
-    marketImage:
-      "https://cdn.ccdn.co.kr/news/photo/202203/752446_326271_1714.jpg",
-    marketName: "청송사과",
-    marketReview: 4,
-    marketExplaination: "이 사과 맛나요",
-    marketUrl: "https~~~",
-  },
-];
-
-export default function Recommand() {
+export default function Recommand({ crop }) {
   const [marketList, setMarketList] = useState([]);
   const scrollRef = useRef(null);
 
@@ -52,14 +18,18 @@ export default function Recommand() {
     const scrollAmount = 375;
     if (!scrollRef.current) return;
     scrollRef.current.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
+      left: direction === "left" ? -scrollAmount * 2 : scrollAmount * 2,
       behavior: "smooth",
     });
   };
 
   useEffect(() => {
-    setMarketList(mock_data);
-  }, []);
+    const fetchData = async () => {
+      const response = await getRecommandList(getCropEngName(crop));
+      setMarketList(response.markets);
+    };
+    fetchData();
+  }, [crop]);
   return (
     <Vertical sx={{ position: "relative" }}>
       <Horizontal sx={{ mb: "80px" }}>
@@ -95,13 +65,7 @@ export default function Recommand() {
 }
 
 const Item = (props) => {
-  const {
-    marketImage,
-    marketName,
-    marketReview,
-    marketExplaination,
-    marketUrl,
-  } = props;
+  const { marketImage, marketName, marketExplaination, marketUrl } = props;
   const navigate = useNavigate();
   return (
     <Vertical
@@ -111,7 +75,9 @@ const Item = (props) => {
         mr: "35px",
         boxShadow: "0px 4px 40.9px 0px rgba(0, 0, 0, 0.05)",
         borderRadius: "12px",
+        cursor: "pointer",
       }}
+      onClick={() => (window.location.href = marketUrl)}
     >
       <Box
         component="img"
@@ -120,31 +86,16 @@ const Item = (props) => {
       />
       <Vertical sx={{ p: "10px 20px" }}>
         <Typography variant="title" sx={{ mb: "6px" }}>
-          {marketName}
+          {marketName.length > 35
+            ? marketName.slice(0, 35) + "..."
+            : marketName}
         </Typography>
-        <StarRating rating={marketReview} />
         <Typography variant="caption">{marketExplaination}</Typography>
-        <AdditionBtn onClick={() => navigate(`${marketUrl}`)}>
+        <AdditionBtn onClick={() => (window.location.href = marketUrl)}>
           더 알아보기
         </AdditionBtn>
       </Vertical>
     </Vertical>
-  );
-};
-
-const StarRating = ({ rating }) => {
-  const totalStars = 5;
-
-  return (
-    <Box display="flex" alignItems="center" sx={{ mb: "10px" }}>
-      {Array.from({ length: totalStars }, (_, i) =>
-        i < rating ? (
-          <Box component="img" src={Grade} key={i} />
-        ) : (
-          <Box component="img" src={NonGrade} key={i} />
-        )
-      )}
-    </Box>
   );
 };
 

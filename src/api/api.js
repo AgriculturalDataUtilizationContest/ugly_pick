@@ -128,3 +128,19 @@ export const getRecentIssue = async (crop) => {
     throw error;
   }
 };
+
+export const getRecommandList = async (crop) => {
+  try {
+    const url = `${process.env.REACT_APP_BASE_URL}/api/recommendation/${crop}`;
+
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log("ERROR : get future prediction price info", error);
+    throw error;
+  }
+};
