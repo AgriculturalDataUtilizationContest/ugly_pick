@@ -16,7 +16,7 @@ export const NeviHomeWrapper = ({
     if (searchTerm.trim()) {
       navigate(`/forecast?query=${encodeURIComponent(searchTerm)}`);
     } else {
-      navigate("/forecast");
+      navigate("/select");
     }
   };
 
