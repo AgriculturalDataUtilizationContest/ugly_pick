@@ -5,9 +5,11 @@ import { pxToRem } from "../../../theme/typography";
 import { formatSignedNumber, formatToKRW } from "../../../utils/utils";
 import TrendUp from "../../../assets/trendingUp.svg";
 import NonImg from "../../../assets/NonImg.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Recommand(props) {
   const { info } = props;
+  const navigate = useNavigate();
 
   return (
     <Container sx={{ mr: "20px" }}>
@@ -59,6 +61,9 @@ export default function Recommand(props) {
       <Typography
         variant="sub"
         sx={{ textAlign: "center", mt: "10px", cursor: "pointer" }}
+        onClick={() =>
+          (window.location.href = `/forecast?crop=${info.cropName}`)
+        }
       >
         더 알아보기 &gt;
       </Typography>

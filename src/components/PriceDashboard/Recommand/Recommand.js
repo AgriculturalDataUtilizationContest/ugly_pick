@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Horizontal, Vertical } from "../../../style/CommunalStyle";
-import { Box, Button, styled, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  styled,
+  Typography,
+} from "@mui/material";
 import { recommandInfo } from "../../../utils/common";
 
 import NonImg from "../../../assets/NonImg.png";
@@ -29,7 +35,13 @@ export default function Recommand({ crop }) {
     };
     fetchData();
   }, [crop]);
-  return (
+  return !marketList ? (
+    <Vertical
+      sx={{ height: "100vh", alignItems: "center", justifyContent: "center" }}
+    >
+      <CircularProgress />
+    </Vertical>
+  ) : (
     <Vertical sx={{ position: "relative" }}>
       <Horizontal sx={{ mb: "80px" }}>
         <Typography variant="title" sx={{ marginRight: "30px" }}>
