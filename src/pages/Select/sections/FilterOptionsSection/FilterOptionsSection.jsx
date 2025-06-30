@@ -4,6 +4,7 @@ import styles from "./FilterOptionsSection.module.css";
 import mandarinImg from "../../../../icons/DragDrop/mandarin.png";
 import peachImg from "../../../../icons/DragDrop/peach.png";
 import pearImg from "../../../../icons/DragDrop/pear.png";
+import cabbageImg from "../../../../icons/DragDrop/cabbage.png";
 
 const produceItems = [
   { name: "고구마", image: "https://c.animaapp.com/mchocbwgl3GYeg/img/image-153.png", category: "grains" },
@@ -22,7 +23,7 @@ const produceItems = [
   { name: "파", image: "https://c.animaapp.com/mchocbwgl3GYeg/img/image-12.png", category: "vegetables" },
   { name: "양파", image: "https://c.animaapp.com/mchocbwgl3GYeg/img/image-13.png", category: "vegetables" },
   { name: "사과", image: "https://c.animaapp.com/mchocbwgl3GYeg/img/image-153-1.png", category: "fruits" },
-  { name: "양배추", image: "https://c.animaapp.com/mchocbwgl3GYeg/img/image-1.png", category: "vegetables" },
+  { name: "양배추", image: cabbageImg, category: "vegetables" },
   { name: "감귤", image: mandarinImg, category: "fruits" },
   { name: "복숭아", image: peachImg, category: "fruits" },
   { name: "배", image: pearImg, category: "fruits" },

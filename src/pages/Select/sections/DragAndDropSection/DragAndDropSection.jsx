@@ -1,20 +1,26 @@
-import { PlusIcon } from "lucide-react";
+import { PlusIcon, X } from "lucide-react";
 import React from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
 import styles from "./DragAndDropSection.module.css";
 
-export const DragAndDropSection = ({ droppedItem }) => {
+export const DragAndDropSection = ({ droppedItem, onReset }) => {
   return (
     <Card className={styles.container}>
       <CardContent className={styles.content}>
         <div className={styles.innerContent}>
           <div className={styles.imageContainer}>
             {droppedItem ? (
-              <img
-                src={droppedItem.image}
-                alt={droppedItem.name}
-                className={styles.droppedImage}
-              />
+              <div className={styles.droppedBox}>
+                <button className={styles.closeButton} onClick={onReset}>
+                  <X size={16} color="white" />
+                </button>
+                <img
+                  src={droppedItem.image}
+                  alt={droppedItem.name}
+                  className={styles.droppedImage}
+                />
+                <div className={styles.droppedItemName}>{droppedItem.name}</div>
+              </div>
             ) : (
               <div className={styles.outerCircle}>
                 <div className={styles.middleCircle}>

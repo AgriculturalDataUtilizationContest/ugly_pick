@@ -2,16 +2,19 @@
   width: 100%;
   max-width: 688px;
   margin-top: 24px;
+  min-height: calc(4 * (155px + 29px) - 110px);
+  box-sizing: border-box;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 29px;
-
-  max-height: calc(4 * (155px + 29px)); /* 카드 높이 + 간격 * 4줄 */
+  width: 100%;
+  height: calc(4 * (155px + 29px) - 110px); /* 고정 높이 */
+  max-height: calc(4 * (155px + 29px) - 29px);
   overflow-y: auto;
-  scrollbar-width: hidden; /* Firefox */
+  scrollbar-width: none;
 }
 
 /* 스크롤바 꾸미기 - 선택사항 */
