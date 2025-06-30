@@ -17,26 +17,28 @@
   flex-direction: column;
   gap: 0.1rem;
   width: 100%;
-}
-
-.leftColumn {
-  flex: 1;
-  margin-right: 0;
-}
-
-.rightColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
+  height: 87%;
 }
 
 @media (min-width: 768px) {
   .contentLayout {
     flex-direction: row;
+    width: 100%;
+    padding: 0 3rem; /* 양끝 여백만 최소한 유지 */
+    gap: 1rem;     /* 좌우 컬럼 사이 여백만 유지 */
+  }
+
+  .leftColumn {
+    flex: 1;
   }
 
   .rightColumn {
-    width: 33.333333%;
+  flex: 0 0 360px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 전체 높이 차지 */
+  position: relative; /* 버튼을 절대 위치로 넣기 위한 기준 */
+  padding-bottom: 80px; /* 버튼 영역 공간 확보 */
+  box-sizing: border-box;
   }
 }

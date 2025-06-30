@@ -51,7 +51,7 @@ export const Select = () => {
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
         >
-          <DragAndDropSection droppedItem={selectedItem} />
+          <DragAndDropSection droppedItem={selectedItem} onReset={handleReset} />
         </div>
 
         {/* Right column with item list, filters, buttons */}

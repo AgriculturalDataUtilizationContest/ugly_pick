@@ -1,10 +1,12 @@
 .container {
-  width: 70%;
-  height: 900px;
+  width: 80%;
+  height: 830px; /* 왼쪽과 동일하게 고정 */
   background-color: #27b06e0d;
   border-radius: 10px;
   overflow: hidden;
   border: 3px dashed #27b06e;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
@@ -99,12 +101,59 @@
   line-height: 37.7px;
 }
 
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 320px; /* 높이 여유 있게 */
+}
+
+.droppedBox {
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: 400px;
+  justify-content: center;
+}
+
 .droppedImage {
-  width: 200px;
-  height: auto;
+  width: 250px;
+  height: 250px;
   object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.droppedItemName {
+  font-size: 50px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.closeButton {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: -50px;
+  right: 8px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 32px;
+  text-align: center;
+  padding: 0;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: #d9363e;
 }
