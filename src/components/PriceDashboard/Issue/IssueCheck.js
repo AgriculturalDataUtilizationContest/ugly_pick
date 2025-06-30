@@ -18,7 +18,6 @@ export default function IssueCheck({ crop }) {
     const fetchData = async () => {
       const response = await getRecentIssue(getCropEngName(crop));
       setIssueInfo(response);
-      console.log(response);
     };
     fetchData();
   }, [crop]);
