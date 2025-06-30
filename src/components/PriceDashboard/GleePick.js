@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, styled, useTheme } from "@mui/material";
 import { Vertical, Horizontal } from "../../style/CommunalStyle";
-import { fetchCropRetailAndSimilar } from "../../api/api";
+import { fetchCropRetailAndSimilar, getCropImage } from "../../api/api";
 import { formatToKRW, getCropEngName } from "../../utils/utils";
+import NonImg from "../../assets/NonImg.png";
 import PriceCardChart from "./PriceCardChart";
 
 export default function GleePick({ crop }) {
   const [otherItem, setOtherItem] = useState(null);
   const [retailPrice, setRetailPrice] = useState([]);
   const theme = useTheme();
+  const [cropImg, setCropImg] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchCropRetailAndSimilar(getCropEngName(crop));
+      const img = await getCropImage(crop);
+      setCropImg(img);
       setOtherItem(response.data.otherCrops);
       setRetailPrice(response.data.retailPrice);
     };
@@ -32,13 +36,15 @@ export default function GleePick({ crop }) {
           >
             GLEE PICK
           </Typography>
-          <PlaceholderBox height="120px">이미지 자리</PlaceholderBox>
+          <PlaceholderBox height="120px">
+            <Box component="img" src={cropImg} sx={{ height: "120px" }} />
+          </PlaceholderBox>
           <Vertical sx={{ textAlign: "center", mt: 2, mb: 3 }}>
             <Typography variant="h6" fontWeight={700}>
-              당근
+              {crop}
             </Typography>
             <Typography variant="caption" color="gray">
-              Carrot
+              {getCropEngName(crop)}
             </Typography>
           </Vertical>
           <Horizontal sx={{ justifyContent: "space-between", px: 2 }}>
@@ -92,7 +98,14 @@ export default function GleePick({ crop }) {
               >
                 <Horizontal gap={1}>
                   <PlaceholderBox width="28px" height="28px">
-                    🥕
+                    <Box
+                      component="img"
+                      src={
+                        itm.cropsImage.startsWith("https")
+                          ? itm.cropsImage
+                          : NonImg
+                      }
+                    />
                   </PlaceholderBox>
                   <Vertical>
                     <Typography variant="body2" fontWeight={600}>
@@ -103,8 +116,8 @@ export default function GleePick({ crop }) {
                     </Typography>
                   </Vertical>
                 </Horizontal>
-                <Typography variant="body2" fontWeight={700}>
-                  {itm.cropCost} 원
+                <Typography variant="body2" width="100px" fontWeight={700}>
+                  {formatToKRW(itm.cropCost)} 원
                 </Typography>
               </Horizontal>
             ))}
@@ -128,7 +141,6 @@ const PlaceholderBox = styled(Box)(({ height, width, mt }) => ({
   height: height || "auto",
   width: width || "100%",
   backgroundColor: "#f3f3f3",
-  border: "1px dashed #ccc",
   borderRadius: "8px",
   display: "flex",
   alignItems: "center",
