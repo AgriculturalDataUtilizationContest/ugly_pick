@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { Box, Typography } from "@mui/material";
 import { useResizeDetector } from "react-resize-detector";
+import "./style.css";
 
 const data = [
   { date: "10/11", ugly: 10, market: 10 },
@@ -29,7 +30,7 @@ export default function PriceChart({ priceData }) {
   const { width, ref } = useResizeDetector();
   return (
     priceData && (
-      <div ref={ref} style={{ width: "100%" }}>
+      <div ref={ref} style={{ width: "100%", marginTop: "40px" }}>
         <LineChart width={width} height={300} data={priceData}>
           <CartesianGrid stroke="#eee" />
           <XAxis
@@ -47,10 +48,15 @@ export default function PriceChart({ priceData }) {
           <Legend
             verticalAlign="top"
             iconType="circle"
+            layout="vertical"
             formatter={(value) => {
               if (value === "ugly") return "못난이 상품 소매 가격";
               if (value === "market") return "시장 상품 소매 가격";
               return value;
+            }}
+            wrapperStyle={{
+              top: "-20px",
+              left: "30px",
             }}
           />
           {/* 미래 시점 배경 강조 */}
@@ -64,18 +70,18 @@ export default function PriceChart({ priceData }) {
           <Line
             // type="monotone"
             dataKey="market"
-            stroke="#666"
+            stroke="#747474"
             strokeWidth={2}
-            dot={{ r: 4, strokeWidth: 2, fill: "white", stroke: "#666" }}
+            dot={{ r: 4, strokeWidth: 2, fill: "white", stroke: "#747474" }}
             activeDot={{ r: 5 }}
           />
           {/* 못난이 상품 라인 */}
           <Line
             // type="monotone"
             dataKey="ugly"
-            stroke="#2C9777"
+            stroke="#27B06E"
             strokeWidth={2}
-            dot={{ r: 4, strokeWidth: 2, fill: "white", stroke: "#2C9777" }}
+            dot={{ r: 4, strokeWidth: 2, fill: "white", stroke: "#27B06E" }}
             activeDot={{ r: 5 }}
           />
         </LineChart>
