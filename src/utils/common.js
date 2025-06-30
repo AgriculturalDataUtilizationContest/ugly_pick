@@ -60,3 +60,5 @@ export const recommandList = [
     rate: -2.0,
   },
 ];
+
+export const calculation = "(소매 상품가격 / 소매 중품가격)*생산비용*가중치";

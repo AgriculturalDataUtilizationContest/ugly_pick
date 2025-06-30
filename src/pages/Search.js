@@ -15,9 +15,7 @@ export default function Search() {
     const fetchData = async () => {
       const popularData = await getPopularCrops();
       setPopularList(popularData);
-
       const seasonData = await getSeasonsCrops();
-      console.log(seasonData);
       setSeasonCropList(seasonData);
     };
     fetchData();

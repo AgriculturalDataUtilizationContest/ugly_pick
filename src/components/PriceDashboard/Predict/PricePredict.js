@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Horizontal, Vertical } from "../../../style/CommunalStyle";
-import { Box, Typography } from "@mui/material";
-import { predictInfo } from "../../../utils/common";
+import { Box, Tooltip, tooltipClasses, Typography } from "@mui/material";
+import { calculation, predictInfo } from "../../../utils/common";
 import { getCropEngName } from "../../../utils/utils";
 import { getFuturePriceInfo, getPastPriceInfo } from "../../../api/api";
 import PriceChart from "./PriceChart";
 import Itemlist from "./Itemlist";
+import ContactSupport from "../../../assets/contact_support.svg";
+import styled from "@emotion/styled";
 
 export default function PricePredict({ crop }) {
   const [priceData, setPriceData] = useState(null);
@@ -57,9 +59,15 @@ export default function PricePredict({ crop }) {
             </Typography>
             <Typography variant="caption">{predictInfo.subtitle}</Typography>
           </Box>
-          <Typography variant="sub" sx={{ mb: "5px" }}>
-            어떻게 예측했는지 궁금해요
-          </Typography>
+          <CustomTooltip title={calculation} placement="top-start">
+            <Typography
+              variant="sub"
+              sx={{ mb: "5px", display: "flex", cursor: "pointer" }}
+            >
+              어떻게 예측했는지 궁금해요
+              <Box component="img" src={ContactSupport} ml="5px" />
+            </Typography>
+          </CustomTooltip>
         </Horizontal>
         <PriceChart crop={crop} priceData={priceData} />
         <Itemlist priceData={futureData} />
@@ -94,3 +102,18 @@ function mergePriceData(retailPriceArr, uglyPriceArr) {
     }))
     .sort((a, b) => new Date("2024/" + a.date) - new Date("2024/" + b.date)); // 날짜 비교 위해 연도 임의 추가
 }
+
+const CustomTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.white,
+    width: "260px",
+    height: "25px",
+    padding: "auto",
+    color: theme.palette.primary.main,
+    fontWeight: "600",
+    fontSize: theme.typography.pxToRem(12),
+    boxShadow: theme.shadows[1],
+  },
+}));
