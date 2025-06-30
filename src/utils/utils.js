@@ -82,3 +82,20 @@ const cropCategoryMap = {
 export function getCropCategory(korName) {
   return cropCategoryMap[korName] || null;
 }
+export const smoothScroll = (target, distance, duration) => {
+  const start = target.scrollLeft;
+  const startTime = performance.now();
+
+  const animate = (time) => {
+    const elapsed = time - startTime;
+    const progress = Math.min(elapsed / duration, 1); // 0 ~ 1
+    target.scrollLeft = start + distance * easeInOutQuad(progress);
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+  };
+
+  const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+
+  requestAnimationFrame(animate);
+};

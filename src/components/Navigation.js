@@ -16,7 +16,6 @@ export default function Navigation() {
     if (!searchRef.current) return;
 
     searchRef.current.style.visibility = "hidden";
-    console.log(location.pathname);
   }, [location.pathname]);
   return (
     <Container container spacing={2} pb={3}>

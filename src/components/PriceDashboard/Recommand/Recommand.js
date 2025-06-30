@@ -13,19 +13,17 @@ import NonImg from "../../../assets/NonImg.png";
 import LeftBtn from "../../../assets/LeftBtn.svg";
 import RightBtn from "../../../assets/RightBtn.svg";
 import { getRecommandList } from "../../../api/api";
-import { getCropEngName } from "../../../utils/utils";
+import { getCropEngName, smoothScroll } from "../../../utils/utils";
 
 export default function Recommand({ crop }) {
   const [marketList, setMarketList] = useState([]);
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
-    const scrollAmount = 375;
+    const scrollAmount = 375 * 2;
     if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({
-      left: direction === "left" ? -scrollAmount * 2 : scrollAmount * 2,
-      behavior: "smooth",
-    });
+    const distance = direction === "left" ? -scrollAmount : scrollAmount;
+    smoothScroll(scrollRef.current, distance, 600);
   };
 
   useEffect(() => {
