@@ -1,4 +1,4 @@
-import { Box, Grid, Input, styled, Typography } from "@mui/material";
+import { Box, Grid, Input, styled, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HomeBtn from "../assets/HomeBtn.svg";
@@ -8,27 +8,23 @@ export default function Navigation() {
   const location = useLocation();
   const navigate = useNavigate();
   const searchRef = useRef(null);
-
-  const [searchValue, setSeachValue] = useState("");
-  const handleEnterPress = (e) => {
-    if (e.key === "Enter") {
-      console.log(searchValue);
-      // search 하기
-    }
-  };
+  const theme = useTheme();
+  const mainColor = theme.palette.primary.main;
+  const isForecastPage = ["/forecast", "/select"].includes(location.pathname);
 
   useEffect(() => {
     if (!searchRef.current) return;
 
     searchRef.current.style.visibility = "hidden";
+    console.log(location.pathname);
   }, [location.pathname]);
   return (
-    <Container container spacing={2}>
+    <Container container spacing={2} pb={3}>
       <Grid size={{ md: 5 }}>
         <Box
           component="img"
           src={HomeBtn}
-          sx={{ cursor: "pointer" }}
+          sx={{ cursor: "pointer", height: "80px" }}
           onClick={() => navigate("/")}
         />
       </Grid>
@@ -42,17 +38,40 @@ export default function Navigation() {
       >
         <SearchContainer ref={searchRef}>
           <Box component="img" src={Search} />
-          <SearchInput
-            value={searchValue}
-            onChange={(e) => setSeachValue(e.target.value)}
-            onKeyDown={handleEnterPress}
-            placeholder="search"
-            disableUnderline
-          />
+          <SearchInput placeholder="search" disableUnderline />
         </SearchContainer>
-        <NavBtn variant="caption">Home</NavBtn>
-        <NavBtn variant="caption">Forcast</NavBtn>
-        <NavBtn variant="caption">Contact</NavBtn>
+        <NavBtn
+          variant="caption"
+          sx={{
+            fontWeight: location.pathname === "/" ? 700 : 400,
+            color: location.pathname === "/" ? mainColor : "#6B7280",
+          }}
+          onClick={() => navigate("/")}
+        >
+          Home
+        </NavBtn>
+
+        <NavBtn
+          variant="caption"
+          sx={{
+            fontWeight: isForecastPage ? 700 : 400,
+            color: isForecastPage ? mainColor : "#6B7280",
+          }}
+          onClick={() => navigate("/select")}
+        >
+          Forecast
+        </NavBtn>
+
+        <NavBtn
+          variant="caption"
+          sx={{
+            fontWeight: location.pathname === "/search" ? 700 : 400,
+            color: location.pathname === "/search" ? mainColor : "#6B7280",
+          }}
+          onClick={() => navigate("/search")}
+        >
+          search
+        </NavBtn>
       </Grid>
     </Container>
   );
@@ -90,6 +109,10 @@ const SearchInput = styled(Input)`
   padding-left: 45px;
 `;
 
-const NavBtn = styled(Typography)`
-  cursor: pointer;
-`;
+const NavBtn = styled(Typography)(({ theme }) => ({
+  cursor: "pointer",
+  color: "#6B7280",
+  fontSize: "16px",
+  fontStyle: "normal",
+  fontWeight: "400",
+}));

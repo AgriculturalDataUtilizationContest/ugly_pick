@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCropCategory } from "../utils/utils";
 
 export const getCropsByCategory = async (category) => {
   try {
@@ -139,6 +140,26 @@ export const getRecommandList = async (crop) => {
       },
     });
     return response.data;
+  } catch (error) {
+    console.log("ERROR : get future prediction price info", error);
+    throw error;
+  }
+};
+
+export const getCropImage = async (crop) => {
+  try {
+    const url = `${
+      process.env.REACT_APP_BASE_URL
+    }/api/forecast/${getCropCategory(crop)}`;
+
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return response.data.crops.find((item) => item.cropsName === crop)
+      ?.cropsImage;
   } catch (error) {
     console.log("ERROR : get future prediction price info", error);
     throw error;
