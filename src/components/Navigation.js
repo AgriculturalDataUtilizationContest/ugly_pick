@@ -1,5 +1,5 @@
 import { Box, Grid, Input, styled, Typography, useTheme } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HomeBtn from "../assets/HomeBtn.svg";
 import Search from "../assets/search.svg";

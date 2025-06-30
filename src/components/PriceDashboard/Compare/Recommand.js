@@ -5,11 +5,9 @@ import { pxToRem } from "../../../theme/typography";
 import { formatSignedNumber, formatToKRW } from "../../../utils/utils";
 import TrendUp from "../../../assets/trendingUp.svg";
 import NonImg from "../../../assets/NonImg.png";
-import { useNavigate } from "react-router-dom";
 
 export default function Recommand(props) {
   const { info } = props;
-  const navigate = useNavigate();
 
   return (
     <Container sx={{ mr: "20px" }}>
